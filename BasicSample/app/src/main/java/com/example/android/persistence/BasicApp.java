@@ -33,6 +33,20 @@ public class BasicApp extends Application {
         mAppExecutors = new AppExecutors();
     }
 
+    /**
+     * // build database on first invocation of getInstance()
+     * BasicApp.getDataBase() -> AppDatabase.getInstance()
+     *      -> AppDatabase.buildDatabase(<context>, executors)
+     *      -> Room.databaseBuilder()
+     *           .addCallback(() -> {
+     *              -> super.onCreate()
+     *              -> executors.diskIO().execute(() -> {
+     *                  // create db instance
+     *                  // generate + insert data
+     *                  // notify
+     *              }
+     *           }
+     */
     public AppDatabase getDatabase() {
         return AppDatabase.getInstance(this, mAppExecutors);
     }
