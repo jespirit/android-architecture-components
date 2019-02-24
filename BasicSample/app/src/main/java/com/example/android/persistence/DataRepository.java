@@ -25,6 +25,7 @@ public class DataRepository {
         mObservableProducts.addSource(mDatabase.productDao().loadAllProducts(),
                 productEntities -> {
                     if (mDatabase.getDatabaseCreated().getValue() != null) {
+                        // Posts a task to a main thread to set the given value.
                         mObservableProducts.postValue(productEntities);
                     }
                 });
