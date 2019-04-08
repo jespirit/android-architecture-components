@@ -46,13 +46,18 @@ public class ProductListFragment extends Fragment {
 
     private ListFragmentBinding mBinding;
 
+    // onCreateView is invoked when the fragment UI is being displayed for the first time.
+    // But not all fragments have a UI eg. headless network fragments
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
+        // The type of the Binding class is <Activity>/<Fragment>Binding
+        // eg. ActivityMainBinding, ListFragmentBinding
         mBinding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false);
 
         mProductAdapter = new ProductAdapter(mProductClickCallback);
+        // productsList is the RecyclerView child of the ListFragment fragment
         mBinding.productsList.setAdapter(mProductAdapter);
 
         return mBinding.getRoot();

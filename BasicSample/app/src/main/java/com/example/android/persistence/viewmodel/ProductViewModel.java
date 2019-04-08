@@ -31,6 +31,7 @@ import com.example.android.persistence.db.entity.ProductEntity;
 
 import java.util.List;
 
+// AndroidViewModel is a ViewModel but contains the application context
 public class ProductViewModel extends AndroidViewModel {
 
     private final LiveData<ProductEntity> mObservableProduct;
