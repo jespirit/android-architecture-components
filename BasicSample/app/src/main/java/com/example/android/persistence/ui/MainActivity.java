@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.android.persistence.R;
 import com.example.android.persistence.model.Product;
 
+// AppCompatActivity subclasses FragmentActivity
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,10 +44,19 @@ public class MainActivity extends AppCompatActivity {
 
         ProductFragment productFragment = ProductFragment.forProduct(product.getId());
 
-        getSupportFragmentManager()
-                .beginTransaction()
+        getSupportFragmentManager()  // returns FragmentManager
+                .beginTransaction()  // returns FragmentTransaction
+                // add this transaction to the back stack
+                // The name is optional
                 .addToBackStack("product")
+                // same as calling remove(Fragment) for each fragment in the container
+                // and then add(int, Fragment, String)
                 .replace(R.id.fragment_container,
-                        productFragment, null).commit();
+                        productFragment, null)
+                        // schedule a commit; does not happen immediately
+                        // only when the main thread is ready
+                        // Note: You can only commit a transaction (with this method) prior to
+                        // the parent/containing activity saving its state (onSaveInstanceState)
+                        .commit();
     }
 }

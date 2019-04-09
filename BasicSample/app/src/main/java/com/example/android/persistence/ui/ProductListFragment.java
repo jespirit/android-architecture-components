@@ -52,7 +52,7 @@ public class ProductListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        // The type of the Binding class is <Activity>/<Fragment>Binding
+        // The name/type of the Binding class is <Activity>/<Fragment>Binding
         // eg. ActivityMainBinding, ListFragmentBinding
         mBinding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false);
 
